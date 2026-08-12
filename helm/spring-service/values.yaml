@@ -1,0 +1,18 @@
+replicaCount: 3
+image:
+  repository: example.invalid/ordering-api
+  tag: latest
+service:
+  port: 8080
+resources:
+  requests:
+    cpu: 500m
+    memory: 1Gi
+  limits:
+    cpu: "2"
+    memory: 3Gi
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 20
+  targetCPUUtilizationPercentage: 65
