@@ -1,0 +1,36 @@
+{
+  "service": "ordering-api",
+  "environment": "production",
+  "replicas": 3,
+  "cpu_request": "500m",
+  "cpu_limit": "2",
+  "memory_request": "1Gi",
+  "memory_limit": "3Gi",
+  "min_replicas": 3,
+  "max_replicas": 20,
+  "readiness_probe": true,
+  "liveness_probe": true,
+  "pod_disruption_budget": true,
+  "secret_source": "aws-secrets-manager",
+  "workload_identity": true,
+  "iam_wildcards": [],
+  "public_admin_ingress": false,
+  "restricted_egress": true,
+  "dependencies_ready": true,
+  "migration_strategy": "expand-contract",
+  "idempotency_required": true,
+  "slo": {
+    "availability_percent": 99.95,
+    "p95_latency_ms": 350
+  },
+  "observability": {
+    "metrics": true,
+    "logs": true,
+    "traces": true,
+    "alerts": true
+  },
+  "rollout": {
+    "strategy": "canary",
+    "rollback_enabled": true
+  }
+}
